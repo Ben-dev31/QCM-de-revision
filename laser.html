@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Laser – Régimes transitoires et impulsionnels (Examen guidé)</title>
+
+  <!-- MathJax for proper formula rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f7f7f7; line-height:1.5; }
+    h1, h2, h3 { color: #003366; }
+    .resume { background:#eaf1f8; padding:18px; border-left:5px solid #003366; margin-bottom:25px; }
+    .resume ul { margin-top:10px; }
+    .question { background: white; padding: 22px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+    .answers label { display: block; margin: 6px 0; }
+    button { margin-top: 10px; padding: 8px 15px; }
+    .result { margin-top: 10px; font-weight: bold; }
+    .correct { color: green; }
+    .wrong { color: red; }
+    .hint { font-style: italic; color:#555; margin-top:8px; }
+  </style>
+</head>
+<body>
+
+<h1>Laser – Régimes transitoires et impulsionnels</h1>
+<p><strong>Niveau :</strong> Master 2 PSI — <em>exercices type examen avec raisonnement et calculs</em></p>
+
+<h2>PARTIE I — Régime transitoire du laser</h2>
+
+<div class="resume">
+<h3>Résumé théorique détaillé</h3>
+<p>Le régime transitoire décrit l’évolution temporelle du laser lorsqu’un paramètre est modifié brutalement (pompage, pertes, Q-switch). Le comportement dynamique est gouverné par les <strong>équations de taux</strong>, qui couplent l’inversion de population \(N(t)\) et le nombre de photons intracavité \(q(t)\).</p>
+
+<p><strong>Équations de taux (laser à 4 niveaux)</strong> :</p>
+\[
+\begin{cases}
+\displaystyle \frac{dN}{dt} = W_p - \frac{N}{\tau} - B q N \\
+\displaystyle \frac{dq}{dt} = B V_a q N - \frac{q}{\tau_c}
+\end{cases}
+\]
+
+<ul>
+<li>\(\tau\) : durée de vie du niveau laser</li>
+<li>\(\tau_c\) : durée de vie des photons dans la cavité</li>
+<li>\(B\) : coefficient d’émission stimulée</li>
+</ul>
+
+<p><strong>Seuil laser :</strong></p>
+\[
+N_0 = \frac{1}{B V_a \tau_c}
+\]
+
+<p>Lors d’un échelon de pompage, l’inversion atteint d’abord le seuil, puis les photons croissent à partir de l’émission spontanée, ce qui introduit un <strong>délai au seuil</strong>. Juste au-dessus du seuil, le système présente des <strong>oscillations de relaxation</strong>.</p>
+</div>
+
+<div class="question" data-answer="c">
+<p><strong>Q1 (raisonnement).</strong> Lors de l’allumage du laser par un échelon de pompage \(W_p > W_{pth}\), pourquoi l’émission laser ne démarre-t-elle pas instantanément ?</p>
+<div class="answers">
+<label><input type="radio" name="q1" value="a"> a) La lumière met un temps fini à parcourir la cavité</label>
+<label><input type="radio" name="q1" value="b"> b) Le gain doit saturer avant l’oscillation</label>
+<label><input type="radio" name="q1" value="c"> c) Les photons doivent s’accumuler à partir de l’émission spontanée</label>
+<label><input type="radio" name="q1" value="d"> d) L’inversion dépasse largement le seuil avant toute émission</label>
+</div>
+<button onclick="checkAnswer(this)">Vérifier</button>
+<div class="hint">Comparer les échelles de temps associées à \(N(t)\) et \(q(t)\).</div>
+<div class="result"></div>
+</div>
+
+<div class="question" data-answer="b">
+<p><strong>Q2 (démonstration guidée).</strong> En linéarisant les équations de taux autour de l’état stationnaire \((N_0, q_0)\), on obtient pour \(q(t)\) :</p>
+<div class="answers">
+<label><input type="radio" name="q2" value="a"> a) Une croissance exponentielle non bornée</label>
+<label><input type="radio" name="q2" value="b"> b) Des oscillations amorties</label>
+<label><input type="radio" name="q2" value="c"> c) Des oscillations non amorties</label>
+<label><input type="radio" name="q2" value="d"> d) Un régime stationnaire immédiat</label>
+</div>
+<button onclick="checkAnswer(this)">Vérifier</button>
+<div class="hint">Analyser les valeurs propres du système linéarisé.</div>
+<div class="result"></div>
+</div>
+
+<div class="question" data-answer="a">
+<p><strong>Q3 (formule).</strong> La pulsation des oscillations de relaxation vaut :</p>
+<div class="answers">
+<label><input type="radio" name="q3" value="a"> a) \( \omega_r = \sqrt{\dfrac{r-1}{\tau\tau_c}} \)</label>
+<label><input type="radio" name="q3" value="b"> b) \( \omega_r = \dfrac{1}{\tau_c} \)</label>
+<label><input type="radio" name="q3" value="c"> c) \( \omega_r = \dfrac{r}{\tau} \)</label>
+<label><input type="radio" name="q3" value="d"> d) \( \omega_r = \sqrt{\dfrac{\tau}{\tau_c}} \)</label>
+</div>
+<button onclick="checkAnswer(this)">Vérifier</button>
+<div class="result"></div>
+</div>
+
+<div class="question" data-answer="d">
+<p><strong>Q4 (calcul numérique).</strong> Pour un laser Nd:YAG avec \(\tau = 230\,\mu s\), \(\tau_c = 10\,ns\) et \(r = 1.2\), l’ordre de grandeur de \(f_r = \omega_r / 2\pi\) est :</p>
+<div class="answers">
+<label><input type="radio" name="q4" value="a"> a) Hz</label>
+<label><input type="radio" name="q4" value="b"> b) kHz</label>
+<label><input type="radio" name="q4" value="c"> c) MHz</label>
+<label><input type="radio" name="q4" value="d"> d) dizaines de kHz</label>
+</div>
+<button onclick="checkAnswer(this)">Vérifier</button>
+<div class="hint">Commencer par estimer \(\tau\tau_c\).</div>
+<div class="result"></div>
+</div>
+
+<h2>PARTIE II — Régime impulsionnel : Q-switch</h2>
+
+<div class="resume">
+<h3>Résumé théorique détaillé</h3>
+<p>Le Q-switch est un <strong>régime transitoire forcé</strong> dans lequel on empêche temporairement l’oscillation laser afin d’accumuler une forte inversion de population. Lorsque les pertes sont brutalement réduites, l’énergie stockée est libérée sous forme d’une impulsion courte et intense.</p>
+
+<p><strong>Accumulation de l’inversion :</strong></p>
+\[
+N_i \approx W_p \tau \quad (t_W \lesssim \tau)
+\]
+
+<p><strong>Énergie de l’impulsion :</strong></p>
+\[
+E \approx h\nu V_a (N_i - N_{th})
+\]
+
+<p>La durée de l’impulsion est de l’ordre de quelques \(\tau_c\), ce qui conduit à des puissances crêtes très élevées.</p>
+</div>
+
+<div class="question" data-answer="d">
+<p><strong>Q5 (raisonnement).</strong> Pourquoi la commutation des pertes doit-elle être beaucoup plus rapide que la durée de l’impulsion Q-switch ?</p>
+<div class="answers">
+<label><input type="radio" name="q5" value="a"> a) Pour réduire les pertes thermiques</label>
+<label><input type="radio" name="q5" value="b"> b) Pour augmenter la durée de l’impulsion</label>
+<label><input type="radio" name="q5" value="c"> c) Pour diminuer le seuil laser</label>
+<label><input type="radio" name="q5" value="d"> d) Pour éviter l’émission de plusieurs impulsions</label>
+</div>
+<button onclick="checkAnswer(this)">Vérifier</button>
+<div class="hint">Comparer le temps de commutation et la dynamique de déplétion de l’inversion.</div>
+<div class="result"></div>
+</div>
+
+<div class="question" data-answer="c">
+<p><strong>Q6 (calcul).</strong> Une impulsion Q-switch d’énergie \(E = 50\,mJ\) et de durée \(t_p = 10\,ns\) possède une puissance crête :</p>
+<div class="answers">
+<label><input type="radio" name="q6" value="a"> a) 5 kW</label>
+<label><input type="radio" name="q6" value="b"> b) 50 kW</label>
+<label><input type="radio" name="q6" value="c"> c) 5 MW</label>
+<label><input type="radio" name="q6" value="d"> d) 50 MW</label>
+</div>
+<button onclick="checkAnswer(this)">Vérifier</button>
+<div class="result"></div>
+</div>
+
+<div class="question" data-answer="b">
+<p><strong>Q7 (démonstration conceptuelle).</strong> Pendant l’émission de l’impulsion Q-switch, le maximum de puissance est atteint lorsque :</p>
+<div class="answers">
+<label><input type="radio" name="q7" value="a"> a) \(N = N_i\)</label>
+<label><input type="radio" name="q7" value="b"> b) \(N = N_{th}\)</label>
+<label><input type="radio" name="q7" value="c"> c) \(N = 0\)</label>
+<label><input type="radio" name="q7" value="d"> d) \(q = 0\)</label>
+</div>
+<button onclick="checkAnswer(this)">Vérifier</button>
+<div class="hint">Relier gain instantané et pertes de cavité.</div>
+<div class="result"></div>
+</div>
+
+<script>
+function checkAnswer(button) {
+  const questionDiv = button.parentElement;
+  const correct = questionDiv.getAttribute('data-answer');
+  const selected = questionDiv.querySelector('input[type=radio]:checked');
+  const resultDiv = questionDiv.querySelector('.result');
+
+  if (!selected) {
+    resultDiv.textContent = 'Veuillez sélectionner une réponse.';
+    resultDiv.className = 'result wrong';
+    return;
+  }
+
+  if (selected.value === correct) {
+    resultDiv.textContent = 'Bonne réponse ✔';
+    resultDiv.className = 'result correct';
+  } else {
+    resultDiv.textContent = 'Mauvaise réponse ✘';
+    resultDiv.className = 'result wrong';
+  }
+}
+</script>
+
+</body>
+</html>
